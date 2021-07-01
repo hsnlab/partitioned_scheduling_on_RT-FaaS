@@ -17,6 +17,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import time
 
+TASK_COUNT=[10, 50, 100, 500, 1000] 	# depcited as 'n' in the paper
+CPU_COUNT=100				# depicted as 'm' in the paper
+SIMULATION_COUNT=2
 
 def get_random_M(n, m):
     # number of items
@@ -146,20 +149,10 @@ opt_solutions = []
 for sim in range(0, 1):
     sim_case = 0
     # for task_count in [10, 50, 100]:
-    for task_count in [10, 50, 100, 500, 1000]:
-        # for task_count in [6, 10, 20, 30]:
-        bin_count = 100
-
-        if task_count == 10:
-            one_count_range = range(10, 110, 5)
-        elif task_count == 50:
-            one_count_range = range(50, 550, 25)
-        elif task_count == 100:
-            one_count_range = range(100, 1100, 50)
-        elif task_count == 500:
-            one_count_range = range(500, 5500, 250)
-        elif task_count == 1000:
-            one_count_range = range(1000, 11000, 500)
+    for task_count in TASK_COUNT:
+        task_count=int(task_count)
+        bin_count = CPU_COUNT
+        one_count_range = range(int(task_count), int(task_count*11), int(task_count/2))
         for one_count in one_count_range:
 
             if one_count < task_count * bin_count and one_count >= task_count:
@@ -167,7 +160,7 @@ for sim in range(0, 1):
                 print("{} - Simulation case {}, tasks: {}, ones:{}".format(time.asctime(), sim_case, task_count,
                                                                            one_count))
                 df = pd.DataFrame(columns=['Sim. case', 'OPT', 'ALG1', 'ALG2', "matrix", "one count"])
-                for simulation in range(2):
+                for simulation in range(SIMULATION_COUNT):
                     # print("{} - Simulation case {}, tasks: {}, ones:{}".format(time.asctime(), sim_case, task_count,
                     #                                                           one_count))
                     # M = get_random_M(6,6)
@@ -185,7 +178,6 @@ for sim in range(0, 1):
                         alg1_solution = ALG.ALG(M, 1)
                         t2 = time.time()
                         alg1_time = t2-t1
-                        print("\t\tALG1 finished in {} sec".format(t2 - t1))
                         t1 = time.time()
                         alg2_solution = ALG.ALG(M, 3)
                         t2 = time.time()
@@ -195,12 +187,10 @@ for sim in range(0, 1):
                         baruah_solution = baruah.baruah_algorithm(M)
                         t2 = time.time()
                         br_time = t2 - t1
-                        print("\t\tBaruah finished in {} sec".format(t2 - t1))
                         t1 = time.time()
                         developed_baruah_solution = baruah.developed_baruah_algorithm(M)
                         t2 = time.time()
                         dbr_time = t2 - t1
-                        print("\t\tExtended Baruah finished in {} sec".format(t2 - t1))
                         t1 = time.time()
                         ffd_solution = heur.first_fit_decreasing_ALG(M)
                         t2 = time.time()
@@ -233,11 +223,13 @@ for sim in range(0, 1):
                              "matrix": M,
                              "one count": one_count, "task_count": task_count, "bin_count": bin_count},
                             ignore_index=True)
+                        print("#Sim \tALG1 \tALG2 \tBR \tEBR \tFFD \tOPT")
                         print("{}. \t{}\t {}\t{} \t{} \t{} \t{}\n".format(simulation, alg1_solution, alg2_solution, baruah_solution,
                                                                     developed_baruah_solution,
                                                                     ffd_solution, opt_solution))
                     sim_case += 1
 
                 print(df)
-                df.to_csv(r'./simulation_results/heterogeneous_cluster_tests_matrix_{}x{}_{}.csv'.format(task_count, bin_count, one_count), index=False,
+                print("Simulation results is written into the file 'heterogeneous_cluster_tests_matrix_{}x{}_{}.csv'\n".format(task_count, bin_count, one_count))
+                df.to_csv(r'./heterogeneous_cluster_tests_matrix_{}x{}_{}.csv'.format(task_count, bin_count, one_count), index=False,
                           header=True)
