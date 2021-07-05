@@ -9,7 +9,7 @@ First, you need to fine tune the simulation parameters:
   * CPU_COUNT (number of processors 'm')
   * SIMULATION_COUNT (simulation repeat count with input 'n' and 'm')
 
-To configure the parameters, just optn the file [simulation_for_paper.py](https://github.com/hsnlab/partitioned_scheduling_on_RT-FaaS/blob/main/cloud2021_paper_materials/simulation_for_paper.py) in directory [cloud2021_paper_materials](https://github.com/hsnlab/partitioned_scheduling_on_RT-FaaS/tree/main/cloud2021_paper_materials) and modify the variables at the begining of the source code.
+To configure the parameters, just open the file [simulation_for_paper.py](https://github.com/hsnlab/partitioned_scheduling_on_RT-FaaS/blob/main/cloud2021_paper_materials/simulation_for_paper.py) in directory [cloud2021_paper_materials](https://github.com/hsnlab/partitioned_scheduling_on_RT-FaaS/tree/main/cloud2021_paper_materials) and modify the variables at the begining of the source code.
 
 The simulation results will be placed into _csv_ files in the same directory from where the simulator was executed.
 
@@ -23,7 +23,8 @@ cd cloud2021_paper_materials
 
 We have created jupyter notebooks to process the simulator output csv files and generate easily readable plots to conclude the results.
 The notebook files are located in the directory [cloud2021_paper_materials](https://github.com/hsnlab/partitioned_scheduling_on_RT-FaaS/tree/main/cloud2021_paper_materials):
-    * [Evaluation_heterogeneous_multicore_multinode_cluster.ipynb](https://github.com/hsnlab/partitioned_scheduling_on_RT-FaaS/blob/main/cloud2021_paper_materials/Evaluation_heterogeneous_multicore_multinode_cluster.ipynb)
-    * [Evaluation_homogeneous_multicore_multinode_cluster.ipynb](https://github.com/hsnlab/partitioned_scheduling_on_RT-FaaS/blob/main/cloud2021_paper_materials/Evaluation_homogeneous_multicore_multinode_cluster.ipynb)
-
+  * [Evaluation_heterogeneous_multicore_multinode_cluster.ipynb](https://github.com/hsnlab/partitioned_scheduling_on_RT-FaaS/blob/main/cloud2021_paper_materials/Evaluation_heterogeneous_multicore_multinode_cluster.ipynb)
+  * [Evaluation_homogeneous_multicore_multinode_cluster.ipynb](https://github.com/hsnlab/partitioned_scheduling_on_RT-FaaS/blob/main/cloud2021_paper_materials/Evaluation_homogeneous_multicore_multinode_cluster.ipynb)
+  
+  
 The simulated data from the paper are located in directory [cloud2021_paper_materials/dataset_paper](https://github.com/hsnlab/partitioned_scheduling_on_RT-FaaS/tree/main/cloud2021_paper_materials/dataset_paper).
